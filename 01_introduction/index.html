@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Introduction</title>
+</head>
+<body>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+
+    <h3> Getting Started</h3>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+
+    <h3> Declarative Rendering</h3>
+    <div id="app-2">
+        <span v-bind:title="message">
+          <!--
+              The v-bind attribute you are seeing is called a directive. 
+              Directives are prefixed with v- to indicate that they are 
+              special attributes provided by Vue, and as you may have guessed, 
+              they apply special reactive behavior to the rendered DOM.
+          -->
+          Hover your mouse over me for a few seconds
+          to see my dynamically bound title!
+        </span>
+    </div>
+    
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+    <h3> Conditionals </h3>
+    <div id="app-3">
+        <span v-if="seen">Now you see me</span>
+    </div>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+    <h3> Loops </h3>
+    <div id="app-4">
+        <ol>
+          <li v-for="todo in todos">
+            {{ todo.text }}
+          </li>
+        </ol>
+    </div>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+    <h3> Handling User Input - 1</h3>
+    <div id="app-5">
+        <p>{{ message }}</p>
+        <!--
+            To let users interact with your app, 
+            we can use the v-on directive to attach 
+            event listeners that invoke methods on our 
+            Vue instances
+        -->
+        <button v-on:click="reverseMessage">Reverse Message</button>
+        <!--
+            Note that in this method we update the state of our app without 
+            touching the DOM - all DOM manipulations are handled by Vue, 
+            and the code you write is focused on the underlying logic.
+        -->
+    </div>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+    <h3> Handling User Input - 2 </h3>
+    <div id="app-6">
+        <p>{{ message }}</p>
+        <!--
+            the v-model directive that makes two-way binding between form input and app state a breeze:
+        -->
+        <input v-model="message">
+    </div>
+
+    <!-- Break - Begin-->
+    <br><br>
+    <!-- Break - End-->
+
+    <h3> Composing With Components</h3>
+    <!--
+        The component system is another important concept in Vue, 
+        because it’s an abstraction that allows us to build large-scale 
+        applications composed of small, self-contained, and often 
+        reusable components. 
+        
+        If we think about it, almost any type of application interface 
+        can be abstracted into a tree of components
+    -->
+
+    <div id="app-7">
+        <ol>
+          <!--
+            Now we provide each todo-item with the todo object
+            it's representing, so that its content can be dynamic.
+            We also need to provide each component with a "key",
+            which will be explained later.
+          -->
+          <todo-item
+            v-for="item in groceryList"
+            v-bind:todo="item"
+            v-bind:key="item.id"
+          ></todo-item>
+        </ol>
+      </div>
+
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Include local Vue.js file-->
+    <script src="./main.js"></script>
+</body>
+</html>
